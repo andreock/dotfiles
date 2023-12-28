@@ -38,6 +38,7 @@ require("lazy").setup({
     version = '^1.0.0', -- optional: only update when a new 1.x version is released
   },
   { 'codota/tabnine-nvim', build = "./dl_binaries.sh" },
+  "andweeb/presence.nvim"
 })
 
 require('tabnine').setup({
