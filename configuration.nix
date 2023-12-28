@@ -13,6 +13,10 @@
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.extraModulePackages = with config.boot.kernelPackages; [ v4l2loopback ];
+  boot.kernelModules = [
+     "v4l2loopback"
+  ];
 
   networking.hostName = "iusenixbtw"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -112,9 +116,7 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "23.11"; # Did you read the comment?
-  # Hyprland
   programs.hyprland.enable = true;
-  # Fish shell
   programs.fish.enable = true;
   # Printers
   services.printing.enable = true;
@@ -124,9 +126,20 @@
     openFirewall = true;
   };
   # Audio(Pulseaudio)
-  hardware.pulseaudio.enable = true;
-  hardware.pulseaudio.support32Bit = true;    ## If compatibility with 32-bit applications is desired.
-  nixpkgs.config.pulseaudio = true;
+#  hardware.pulseaudio.enable = true;
+#  hardware.pulseaudio.support32Bit = true;    ## If compatibility with 32-bit applications is desired.
+#  nixpkgs.config.pulseaudio = true;
+  # Pipewire
+# rtkit is optional but recommended
+security.rtkit.enable = true;
+services.pipewire = {
+  enable = true;
+  alsa.enable = true;
+  alsa.support32Bit = true;
+  pulse.enable = true;
+  # If you want to use JACK applications, uncomment this
+  jack.enable = true;
+  };
   # Docker
   virtualisation.docker.enable = true;
   # Bluetooth
