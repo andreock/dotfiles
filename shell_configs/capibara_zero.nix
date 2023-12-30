@@ -14,8 +14,14 @@ in pkgs.mkShell rec {
     vscode
   ];
   shellHook = ''
-    # fixes libstdc++ issues and libgl.so issues
+    # fixes library issues
     LD_LIBRARY_PATH=${pkgs.stdenv.cc.cc.lib}/lib64/
-    patchelf --set-interpreter ${pkgs.stdenv.cc.bintools.dynamicLinker} ~/.platformio/packages/toolchain-xtensa-esp32s3/bin/xtensa-esp32s3-elf-gcc
+    
+    # Patch xtensa toolchain
+    for f in ~/.platformio/packages/toolchain-xtensa-esp32s3/bin/*; do patchelf --set-interpreter ${pkgs.stdenv.cc.bintools.dynamicLinker} $f; done;
+    # Very dirty patching here but it works great
+    for f in ~/.platformio/packages/toolchain-xtensa-esp32s3/libexec/gcc/xtensa-esp32s3-elf/8.4.0/*; do patchelf --set-interpreter ${pkgs.stdenv.cc.bintools.dynamicLinker} $f; done;
+    # Patch xtensa ELF
+    for f in ~/.platformio/packages/toolchain-xtensa-esp32s3/xtensa-esp32s3-elf/bin/*; do patchelf --set-interpreter ${pkgs.stdenv.cc.bintools.dynamicLinker} $f; done;
     '';
 }    
