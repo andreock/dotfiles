@@ -1,0 +1,72 @@
+{
+    "modules-left": ["hyprland/workspaces"],
+    "modules-center": ["clock", "privacy"],
+    /* "modules-right": ["tray", "custom/scratchpad-indicator", "pulseaudio", "custom/power"], */
+    "modules-right": ["tray", "cpu", "memory", "bluetooth", "pulseaudio", "backlight", "network", "battery", "power-profiles-daemon"],
+    "sway/mode": {
+        "format": "<span style=\"italic\">{}</span>"
+    },
+    "cpu": {
+    	"format": "  {usage}%",
+	"on-click": "kitty -e btop"
+    },
+    "memory": {
+    	"format": "  {percentage}%",
+	"on-click": "kitty -e btop"
+    },
+    "bluetooth": {
+    	"on-click": "kitty -e 'bluetoothctl'"
+    },
+    "network": {
+        "format-wifi": "  {essid} ({signalStrength}%)",
+        "format-ethernet": "   {ifname}",
+        "format-disconnected": "", 
+        "on-click": "kitty -e 'nmtui'"
+    },
+    "backlight": {
+    	"format": "  {percent}%"
+    },
+    "tray": {
+        "icon-size": 15,
+        "spacing": 10
+    },
+    "battery": {
+    	"bat": "BAT1",
+	"format": "{icon} {capacity}%",
+	"format-icons": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
+    },
+    "clock": {
+        // "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        // "format-alt": "{:%Y-%m-%d}"
+		"on-click": "gnome-calendar"
+    },
+    "pulseaudio": {
+        "format": "{volume}% {icon} ",
+        "format-bluetooth": "{volume}% {icon} {format_source}",
+        "format-bluetooth-muted": " {icon} {format_source}",
+        "format-muted": "0% {icon} ",
+        "format-source": "{volume}% ",
+        "format-source-muted": "",
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""]
+        },
+        "on-click": "pavucontrol"
+    },
+    "power-profiles-daemon": {
+  "format": "{icon}   {profile}",
+  "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
+  "tooltip": true,
+  "format-icons": {
+    "default": "",
+    "performance": "",
+    "balanced": "",
+    "power-saver": ""
+  }
+}
+}

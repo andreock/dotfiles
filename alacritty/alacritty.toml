@@ -1,0 +1,17 @@
+[window]
+
+padding.x = 5 
+padding.y = 5
+
+decorations = "Full"
+decorations_theme_variant = "Dark" # "Dark"
+
+[font]
+
+normal.family = "JetBrains mono"
+bold.family = "JetBrains mono"
+italic.family = "JetBrains mono"
+bold_italic.family = "JetBrains mono"
+
+size = 12.0
+
